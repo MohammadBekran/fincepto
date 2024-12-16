@@ -18,10 +18,20 @@ export const useCreateAccountModal = () => {
 };
 
 export const useEditAccountModal = () => {
-  const [open, setOpen] = useQueryState("edit-account", parseAsString);
+  const [accountId, setAccountId] = useQueryState(
+    "edit-account",
+    parseAsString
+  );
+
+  const open = ({ accountId }: { accountId: string }) => {
+    setAccountId(accountId);
+  };
+  const close = () => setAccountId(null);
 
   return {
+    accountId,
     open,
-    setOpen,
+    close,
+    setAccountId,
   };
 };

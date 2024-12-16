@@ -16,6 +16,25 @@ const app = new Hono()
 
     return c.json({ data });
   })
+  .get("/:accountId", clerkMiddleware(), async (c) => {
+    const { accountId } = c.req.param();
+    const auth = getAuth(c);
+
+    if (!auth?.userId) return c.json({ error: "Unauthorized" }, 401);
+    if (!accountId) return c.json({ error: "AccountId is required" }, 400);
+
+    const [data] = await db
+      .select({
+        id: accounts.id,
+        name: accounts.name,
+      })
+      .from(accounts)
+      .where(and(eq(accounts.userId, auth.userId), eq(accounts.id, accountId)));
+
+    if (!data) return c.json({ error: "Not found " }, 404);
+
+    return c.json({ data });
+  })
   .post(
     "/",
     clerkMiddleware(),
@@ -61,7 +80,7 @@ const app = new Hono()
       return c.json({ data });
     }
   )
-  .put(
+  .patch(
     "/:accountId",
     clerkMiddleware(),
     zValidator("json", accountsInsertSchema.pick({ name: true })),
@@ -86,6 +105,22 @@ const app = new Hono()
 
       return c.json({ data });
     }
-  );
+  )
+  .delete("/:accountId", clerkMiddleware(), async (c) => {
+    const { accountId } = c.req.param();
+    const auth = getAuth(c);
+
+    if (!auth?.userId) return c.json({ error: "Unauthorized" }, 401);
+    if (!accountId) return c.json({ error: "AccountId is required" }, 400);
+
+    const [data] = await db
+      .delete(accounts)
+      .where(and(eq(accounts.userId, auth.userId), eq(accounts.id, accountId)))
+      .returning();
+
+    if (!data) return c.json({ error: "Not found" }, 404);
+
+    return c.json({ data });
+  });
 
 export default app;

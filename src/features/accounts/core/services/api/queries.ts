@@ -18,3 +18,22 @@ export const useGetAccounts = () => {
 
   return query;
 };
+
+export const useGetAccount = ({ accountId }: { accountId: string }) => {
+  const query = useQuery({
+    queryKey: ["account", accountId],
+    queryFn: async () => {
+      const response = await client.api.accounts[":accountId"]["$get"]({
+        param: { accountId },
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch account");
+
+      const { data } = await response.json();
+
+      return data;
+    },
+  });
+
+  return query;
+};

@@ -1,10 +1,12 @@
 import { client } from "@/lib/hono";
 import { ColumnDef } from "@tanstack/react-table";
 import { InferResponseType } from "hono";
+import { ArrowUpDown } from "lucide-react";
+
+import AccountColumnActions from "@/features/accounts/components/account-column-actions";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
 
 type TAccountResponse = InferResponseType<
   typeof client.api.accounts.$get
@@ -44,5 +46,9 @@ export const ACCOUNT_COLUMNS: ColumnDef<TAccountResponse>[] = [
         <ArrowUpDown className="size-4" />
       </Button>
     ),
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <AccountColumnActions accountId={row.original.id} />,
   },
 ];

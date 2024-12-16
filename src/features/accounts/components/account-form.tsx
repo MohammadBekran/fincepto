@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Trash } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { useCreateAccountModal } from "@/features/accounts/core/hooks";
-import { useCreateAccount } from "@/features/accounts/core/services/api/mutations";
 import type { TAccountFormData } from "@/features/accounts/core/types";
 
 import { Button } from "@/components/ui/button";
@@ -17,28 +17,31 @@ import {
 import { Input } from "@/components/ui/input";
 import { accountsInsertSchema } from "@/db/schema";
 
+interface IAccountFormProps {
+  initialValues?: { id: string; name: string };
+  disabled: boolean;
+  onSubmit: (values: TAccountFormData) => void;
+  onDelete?: () => void;
+}
+
 const AccountForm = ({
   initialValues,
-}: {
-  initialValues?: { name: string };
-}) => {
+  disabled,
+  onSubmit,
+  onDelete,
+}: IAccountFormProps) => {
   const form = useForm<TAccountFormData>({
     resolver: zodResolver(accountsInsertSchema.pick({ name: true })),
     defaultValues: initialValues ?? {
       name: "",
     },
   });
-  const { close } = useCreateAccountModal();
-  const { mutate: createAccount, isPending } = useCreateAccount();
 
-  const onSubmit = (values: TAccountFormData) => {
-    createAccount(
-      { json: values },
-      {
-        onSuccess: () => close(),
-      }
-    );
-  };
+  useEffect(() => {
+    if (initialValues) {
+      form.setValue("name", initialValues.name);
+    }
+  }, [initialValues, form]);
 
   return (
     <Form {...form}>
@@ -52,7 +55,7 @@ const AccountForm = ({
               <FormControl>
                 <Input
                   placeholder="e.g. Cash, Bank, Credit Card"
-                  disabled={isPending}
+                  disabled={disabled}
                   {...field}
                 />
               </FormControl>
@@ -60,9 +63,21 @@ const AccountForm = ({
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isPending} className="w-full">
-          {initialValues ? "Edit account" : "Create account"}
+        <Button type="submit" disabled={disabled} className="w-full">
+          {!!initialValues ? "Edit account" : "Create account"}
         </Button>
+        {initialValues && (
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            disabled={disabled}
+            onClick={onDelete}
+          >
+            <Trash className="size-4" />
+            Delete account
+          </Button>
+        )}
       </form>
     </Form>
   );

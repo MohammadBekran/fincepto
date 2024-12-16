@@ -4,6 +4,7 @@ import { Row } from "@tanstack/react-table";
 import { Loader2, PlusIcon } from "lucide-react";
 
 import CreateAccountModal from "@/features/accounts/components/create-account-modal";
+import EditAccountModal from "@/features/accounts/components/edit-account-modal";
 import { ACCOUNT_COLUMNS } from "@/features/accounts/core/constants";
 import { useCreateAccountModal } from "@/features/accounts/core/hooks";
 import { useBulkDeleteAccount } from "@/features/accounts/core/services/api/mutations";
@@ -74,6 +75,7 @@ const Accounts = () => {
         </CardContent>
       </Card>
       <CreateAccountModal />
+      <EditAccountModal />
     </div>
   );
 };
