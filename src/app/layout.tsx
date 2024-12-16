@@ -1,10 +1,14 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import NuqsProvider from "@/components/partials/providers/nuqs-provider";
+import QueryClientProvider from "@/components/partials/providers/query-client-provider";
+import ToastProvider from "@/components/partials/providers/toast-provider";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +28,14 @@ const RootLayout = ({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn("antialiased", inter.className)}>{children}</body>
+        <body className={cn("antialiased", inter.className)}>
+          <QueryClientProvider>
+            <NuqsProvider>
+              <ToastProvider />
+              {children}
+            </NuqsProvider>
+          </QueryClientProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
