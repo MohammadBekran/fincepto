@@ -3,30 +3,31 @@
 import { Row } from "@tanstack/react-table";
 import { Loader2, PlusIcon } from "lucide-react";
 
-import CreateAccountModal from "@/features/accounts/components/create-account-modal";
-import EditAccountModal from "@/features/accounts/components/edit-account-modal";
-import { ACCOUNT_COLUMNS } from "@/features/accounts/core/constants";
-import { useCreateAccountModal } from "@/features/accounts/core/hooks";
-import { useBulkDeleteAccount } from "@/features/accounts/core/services/api/mutations.api";
-import { useGetAccounts } from "@/features/accounts/core/services/api/queries.api";
+import CreateCategoryModal from "@/features/categories/components/create-category-modal";
+import EditCategoryModal from "@/features/categories/components/edit-category-modal";
+import { CATEGORY_COLUMNS } from "@/features/categories/core/constants";
+import { useCreateCategoryModal } from "@/features/categories/core/hooks";
+import { useBulkDeleteCategory } from "@/features/categories/core/services/api/mutations.api";
+import { useGetCategories } from "@/features/categories/core/services/api/queries.api";
 
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const Accounts = () => {
-  const { data: accounts, isLoading: isAccountsLoading } = useGetAccounts();
-  const { mutate: bulkDeleteAccounts, isPending: isBulkDeleteAccountsPending } =
-    useBulkDeleteAccount();
-  const { open } = useCreateAccountModal();
+const Categories = () => {
+  const { data: categories, isLoading: isCategoriesLoading } =
+    useGetCategories();
+  const { mutate: bulkDeleteCategory, isPending: bulkDeleteCategoryPending } =
+    useBulkDeleteCategory();
+  const { open } = useCreateCategoryModal();
 
-  const isDisabled = isAccountsLoading || isBulkDeleteAccountsPending;
+  const isDisabled = isCategoriesLoading || bulkDeleteCategoryPending;
 
   const containerClassName = "w-full max-w-screen-2xl mx-auto pb-10 -mt-24";
   const cardClassName = "border-bone drop-shadow-sm";
 
-  if (isAccountsLoading) {
+  if (isCategoriesLoading) {
     return (
       <div className={containerClassName}>
         <Card className={cardClassName}>
@@ -49,16 +50,16 @@ const Accounts = () => {
       name: string;
     }>[]
   ) => {
-    const ids = row.map((accountRow) => accountRow.original.id);
+    const ids = row.map((categoryRow) => categoryRow.original.id);
 
-    bulkDeleteAccounts({ json: { ids } });
+    bulkDeleteCategory({ json: { ids } });
   };
 
   return (
     <div className={containerClassName}>
       <Card className={cardClassName}>
         <CardHeader className="gap-y-2 lg:flex-row lg:justify-between lg:items-center">
-          <CardTitle>Accounts page</CardTitle>
+          <CardTitle>Categories page</CardTitle>
           <Button size="sm" onClick={open} disabled={isDisabled}>
             <PlusIcon className="size-4" />
             Add new
@@ -67,17 +68,17 @@ const Accounts = () => {
         <CardContent>
           <DataTable
             filterKey="name"
-            columns={ACCOUNT_COLUMNS}
-            data={accounts ?? []}
+            columns={CATEGORY_COLUMNS}
+            data={categories ?? []}
             disabled={isDisabled}
             onDelete={(row) => handleDelete(row)}
           />
         </CardContent>
       </Card>
-      <CreateAccountModal />
-      <EditAccountModal />
+      <CreateCategoryModal />
+      <EditCategoryModal />
     </div>
   );
 };
 
-export default Accounts;
+export default Categories;

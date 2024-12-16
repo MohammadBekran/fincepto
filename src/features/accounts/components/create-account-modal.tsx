@@ -2,7 +2,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import AccountForm from "@/features/accounts/components/account-form";
 import { useCreateAccountModal } from "@/features/accounts/core/hooks";
-import { useCreateAccount } from "@/features/accounts/core/services/api/mutations";
+import { useCreateAccount } from "@/features/accounts/core/services/api/mutations.api";
 import type { TAccountFormData } from "@/features/accounts/core/types";
 
 import {

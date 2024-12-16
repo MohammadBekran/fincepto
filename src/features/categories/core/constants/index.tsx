@@ -3,16 +3,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import { InferResponseType } from "hono";
 import { ArrowUpDown } from "lucide-react";
 
-import AccountColumnActions from "@/features/categories/components/category-column-actions";
+import CategoryColumnActions from "@/features/categories/components/category-column-actions";
 
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
-type TAccountResponse = InferResponseType<
-  typeof client.api.accounts.$get
+type TCategoryResponse = InferResponseType<
+  typeof client.api.categories.$get
 >["data"][1];
 
-export const ACCOUNT_COLUMNS: ColumnDef<TAccountResponse>[] = [
+export const CATEGORY_COLUMNS: ColumnDef<TCategoryResponse>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -49,6 +49,6 @@ export const ACCOUNT_COLUMNS: ColumnDef<TAccountResponse>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <AccountColumnActions accountId={row.original.id} />,
+    cell: ({ row }) => <CategoryColumnActions categoryId={row.original.id} />,
   },
 ];

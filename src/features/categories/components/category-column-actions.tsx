@@ -1,7 +1,7 @@
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 
-import { useEditAccountModal } from "@/features/accounts/core/hooks";
-import { useDeleteAccount } from "@/features/accounts/core/services/api/mutations";
+import { useEditCategoryModal } from "@/features/categories/core/hooks";
+import { useDeleteCategory } from "@/features/categories/core/services/api/mutations.api";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,21 +12,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useConfirm } from "@/core/hooks";
 
-const AccountColumnActions = ({ accountId }: { accountId: string }) => {
-  const { mutate: deleteAccount, isPending: isDeleteAccountPending } =
-    useDeleteAccount();
-  const { open } = useEditAccountModal();
+const CategoryColumnActions = ({ categoryId }: { categoryId: string }) => {
+  const { mutate: deleteCategory, isPending: isDeleteCategoryPending } =
+    useDeleteCategory();
+  const { open } = useEditCategoryModal();
   const [ConfirmationDialog, confirm] = useConfirm({
     title: "Are you sure?",
-    message: "You are about to delete this account.",
+    message: "You are about to delete this category.",
     variant: "ghost",
   });
 
-  const handleDeleteAccount = async () => {
+  const handleDeleteCategory = async () => {
     const ok = await confirm();
 
     if (ok) {
-      deleteAccount({ param: { accountId } });
+      deleteCategory({ param: { categoryId } });
     }
   };
 
@@ -42,15 +42,15 @@ const AccountColumnActions = ({ accountId }: { accountId: string }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem
-            disabled={isDeleteAccountPending}
-            onClick={() => open({ accountId })}
+            disabled={isDeleteCategoryPending}
+            onClick={() => open({ categoryId })}
           >
             <Edit className="size-4" />
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem
-            disabled={isDeleteAccountPending}
-            onClick={handleDeleteAccount}
+            disabled={isDeleteCategoryPending}
+            onClick={handleDeleteCategory}
           >
             <Trash className="size-4" />
             Delete
@@ -61,4 +61,4 @@ const AccountColumnActions = ({ accountId }: { accountId: string }) => {
   );
 };
 
-export default AccountColumnActions;
+export default CategoryColumnActions;

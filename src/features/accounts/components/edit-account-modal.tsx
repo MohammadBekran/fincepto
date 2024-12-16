@@ -5,8 +5,8 @@ import { useEditAccountModal } from "@/features/accounts/core/hooks";
 import {
   useDeleteAccount,
   useEditAccount,
-} from "@/features/accounts/core/services/api/mutations";
-import { useGetAccount } from "@/features/accounts/core/services/api/queries";
+} from "@/features/accounts/core/services/api/mutations.api";
+import { useGetAccount } from "@/features/accounts/core/services/api/queries.api";
 import type { TAccountFormData } from "@/features/accounts/core/types";
 
 import {
