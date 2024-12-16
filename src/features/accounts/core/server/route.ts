@@ -1,8 +1,9 @@
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
 import { createId } from "@paralleldrive/cuid2";
-import { and, eq } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import { Hono } from "hono";
+import { z } from "zod";
 
 import { db } from "@/db/drizzle";
 import { accounts, accountsInsertSchema } from "@/db/schema";
@@ -35,6 +36,27 @@ const app = new Hono()
         .insert(accounts)
         .values({ id: createId(), userId: auth.userId, name })
         .returning();
+
+      return c.json({ data });
+    }
+  )
+  .post(
+    "/bulk-delete",
+    clerkMiddleware(),
+    zValidator("json", z.object({ ids: z.array(z.string()) })),
+    async (c) => {
+      const { ids } = c.req.valid("json");
+      const auth = getAuth(c);
+
+      if (!auth?.userId) return c.json({ error: "Unauthorized" }, 401);
+      if (!ids) return c.json({ error: "Account Ids missing" }, 400);
+
+      const data = await db
+        .delete(accounts)
+        .where(and(eq(accounts.userId, auth.userId), inArray(accounts.id, ids)))
+        .returning({
+          id: accounts.id,
+        });
 
       return c.json({ data });
     }
