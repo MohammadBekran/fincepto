@@ -1,6 +1,6 @@
 {
-  "id": "a1899cc0-f5e4-4c19-98f2-d3969216e0bb",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "72618b97-e080-4e9d-b22b-b446a80064b0",
+  "prevId": "a1899cc0-f5e4-4c19-98f2-d3969216e0bb",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -100,8 +100,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "noted": {
-          "name": "noted",
+        "notes": {
+          "name": "notes",
           "type": "text",
           "primaryKey": false,
           "notNull": false

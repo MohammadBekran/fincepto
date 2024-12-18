@@ -129,6 +129,9 @@ export const useEditCategory = () => {
       queryClient.invalidateQueries({
         queryKey: ["categories", data.id],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["transactions"],
+      });
 
       toast.success("Category edited");
     },
