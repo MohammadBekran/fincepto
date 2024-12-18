@@ -1,22 +1,16 @@
-import { client } from "@/lib/hono";
 import { ColumnDef } from "@tanstack/react-table";
-import { InferResponseType } from "hono";
-import { ArrowUpDown } from "lucide-react";
 import { format } from "date-fns";
+import { ArrowUpDown } from "lucide-react";
 
-import TransactionColumnActions from "@/features/transactions/components/transaction-column-actions";
-import CategoryColumn from "@/features/transactions/components/category-column";
 import AccountColumn from "@/features/transactions/components/account-column";
+import CategoryColumn from "@/features/transactions/components/category-column";
+import TransactionColumnActions from "@/features/transactions/components/transaction-column-actions";
+import type { TTransactionResponse } from "@/features/transactions/core/types";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { formatCurrency } from "@/lib/utils";
-
-type TTransactionResponse = InferResponseType<
-  typeof client.api.transactions.$get,
-  200
->["data"][1];
 
 export const TRANSACTION_COLUMNS: ColumnDef<TTransactionResponse>[] = [
   {
@@ -145,3 +139,9 @@ export const TRANSACTION_COLUMNS: ColumnDef<TTransactionResponse>[] = [
     ),
   },
 ];
+
+export const INITIAL_TRANSACTIONS_IMPORT_RESULTS = {
+  data: [],
+  errors: [],
+  meta: [],
+};
