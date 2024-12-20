@@ -16,7 +16,7 @@ const Header = () => {
             <Navigation />
           </div>
           <ClerkLoaded>
-            <UserButton />
+            <UserButton signInUrl="/sign-in" />
           </ClerkLoaded>
           <ClerkLoading>
             <Loader2 className="size-8 animate-spin text-slate-400" />
