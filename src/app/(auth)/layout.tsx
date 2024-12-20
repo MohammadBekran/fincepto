@@ -10,7 +10,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             Log in or Create account to get back to your dashboard!
           </p>
         </div>
-        <div className="flex justify-center items-center">{children}</div>
+        <div className="flex justify-center items-center pb-3">{children}</div>
       </div>
       <div className="h-full hidden justify-center items-center bg-blue-600 lg:flex">
         <Image src="/logo.svg" alt="Logo" width={100} height={100} />

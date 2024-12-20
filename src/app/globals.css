@@ -60,3 +60,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Clerk */
+.cl-internal-c4jh7f:focus {
+  @apply shadow-none;
+}
