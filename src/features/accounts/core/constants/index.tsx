@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { InferResponseType } from "hono";
 import { ArrowUpDown } from "lucide-react";
 
-import AccountColumnActions from "@/features/categories/components/category-column-actions";
+import AccountColumnActions from "@/features/accounts/components/account-column-actions";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
