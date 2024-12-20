@@ -1,7 +1,7 @@
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 
 import { useEditAccountModal } from "@/features/accounts/core/hooks";
-import { useDeleteAccount } from "@/features/accounts/core/services/api/mutations";
+import { useDeleteAccount } from "@/features/accounts/core/services/api/mutations.api";
 
 import { Button } from "@/components/ui/button";
 import {
