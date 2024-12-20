@@ -7,6 +7,8 @@ import WelcomeMessage from "@/components/welcome-message";
 import Filters from "@/components/filters";
 
 const Header = () => {
+  const signInUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sign-in`;
+
   return (
     <header className="py-8 px-4 pb-36 bg-gradient-to-b from-blue-700 to-blue-500 lg:px-14">
       <div className="max-w-screen-2xl mx-auto">
@@ -16,7 +18,7 @@ const Header = () => {
             <Navigation />
           </div>
           <ClerkLoaded>
-            <UserButton signInUrl="/sign-in" />
+            <UserButton signInUrl={signInUrl} />
           </ClerkLoaded>
           <ClerkLoading>
             <Loader2 className="size-8 animate-spin text-slate-400" />
