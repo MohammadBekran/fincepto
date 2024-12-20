@@ -1,4 +1,5 @@
 import { JSX, useState } from "react";
+import { parseAsString, parseAsTimestamp, useQueryStates } from "nuqs";
 
 import { Button, ButtonProps } from "@/components/ui/button";
 import {
@@ -55,4 +56,12 @@ export const useConfirm = ({
   );
 
   return [ConfirmationDialog, confirm];
+};
+
+export const useFilters = () => {
+  return useQueryStates({
+    accountId: parseAsString,
+    from: parseAsTimestamp,
+    to: parseAsTimestamp,
+  });
 };

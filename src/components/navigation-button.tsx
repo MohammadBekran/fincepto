@@ -19,7 +19,7 @@ const NavigationButton = ({
       size="sm"
       variant="outline"
       className={cn(
-        "w-full justify-between border-none outline-none transition font-normal text-white hover:bg-white/20 hover:text-white focus-visible:ring-offset-0 focus-visible:ring-transparent focus:text-white/30 lg:w-auto",
+        "w-full justify-between border-none outline-none transition font-normal text-white hover:bg-white/20 hover:text-white focus-visible:ring-offset-0 focus-visible:ring-transparent focus:bg-white/30 lg:w-auto",
         isActive ? "bg-white/10 text-white" : "bg-transparent"
       )}
       asChild

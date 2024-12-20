@@ -81,7 +81,7 @@ export const TRANSACTION_COLUMNS: ColumnDef<TTransactionResponse>[] = [
       const amount = row.getValue("amount") as string;
 
       const floatAmount = parseFloat(amount);
-      const formattedAmount = formatCurrency({ value: floatAmount });
+      const formattedAmount = formatCurrency(floatAmount);
 
       const amountBadgeVariant = floatAmount < 0 ? "destructive" : "primary";
 

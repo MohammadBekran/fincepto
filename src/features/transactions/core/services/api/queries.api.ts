@@ -1,23 +1,21 @@
-import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono";
+import { useFilters } from "@/core/hooks";
 
 export const useGetTransactions = () => {
-  const params = useSearchParams();
+  const [filters] = useFilters();
 
-  const from = params.get("from") ?? "";
-  const to = params.get("to") ?? "";
-  const accountId = params.get("accountId") ?? "";
+  const { from, to, accountId } = filters;
 
   const query = useQuery({
     queryKey: ["transactions", { from, to, accountId }],
     queryFn: async () => {
       const response = await client.api.transactions.$get({
         query: {
-          from,
-          to,
-          accountId,
+          from: from ? String(from) : undefined,
+          to: to ? String(to) : undefined,
+          accountId: accountId ? accountId : undefined,
         },
       });
 
