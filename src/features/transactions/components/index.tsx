@@ -133,7 +133,12 @@ const Transactions = () => {
         <CardHeader className="gap-2 lg:flex-row lg:justify-between lg:items-center">
           <CardTitle>Transaction History</CardTitle>
           <div className="flex flex-col items-center gap-2 lg:flex-row">
-            <Button size="sm" onClick={open} disabled={isDisabled}>
+            <Button
+              size="sm"
+              onClick={open}
+              disabled={isDisabled}
+              className="w-full lg:w-auto"
+            >
               <PlusIcon className="size-4" />
               Add new
             </Button>
