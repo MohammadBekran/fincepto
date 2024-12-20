@@ -73,8 +73,6 @@ const Transactions = () => {
   ) => {
     const accountId = await confirm();
 
-    console.log(accountId);
-
     if (!accountId) {
       return toast.error("Please select an account to continue.");
     }

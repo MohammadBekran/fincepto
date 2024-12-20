@@ -40,8 +40,6 @@ const app = new Hono()
         : defaultFrom;
       const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
 
-      console.log({ accountId });
-
       const {
         id,
         amount,
@@ -127,7 +125,6 @@ const app = new Hono()
       const auth = getAuth(c);
 
       const generateError = ({ dataKey }: { dataKey: string }) => {
-        console.error({ dataKey });
         return c.json({ error: `${dataKey} is required` }, 400);
       };
 
@@ -138,8 +135,6 @@ const app = new Hono()
       if (!values.date) generateError({ dataKey: "Date" });
       if (!values.accountId) generateError({ dataKey: "AccountId" });
       if (!values.categoryId) generateError({ dataKey: "CategoryId" });
-
-      console.info({ values });
 
       const [data] = await db
         .insert(transactions)

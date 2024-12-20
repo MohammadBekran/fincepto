@@ -1,7 +1,14 @@
-import Home from "@/features/home/components";
+import type { Metadata } from "next";
 
-const HomePage = () => {
-  return <Home />;
+import Dashboard from "@/features/dashboard/components";
+
+const DashboardPage = () => {
+  return <Dashboard />;
 };
 
-export default HomePage;
+export default DashboardPage;
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "manage all of your data",
+};

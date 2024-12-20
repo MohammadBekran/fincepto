@@ -42,7 +42,7 @@ const iconVariants = cva("size-6", {
 type TBoxVariants = VariantProps<typeof boxVariant>;
 type TIconVariants = VariantProps<typeof iconVariants>;
 
-interface IHomeSummaryCardProps extends TBoxVariants, TIconVariants {
+interface IDashboardSummaryCardProps extends TBoxVariants, TIconVariants {
   icon: IconType;
   title: string;
   dateRange: string;
@@ -50,14 +50,14 @@ interface IHomeSummaryCardProps extends TBoxVariants, TIconVariants {
   percentageChange?: number;
 }
 
-const HomeSummaryCard = ({
+const DashboardSummaryCard = ({
   icon: Icon,
   title,
   dateRange,
   value = 0,
   percentageChange = 0,
   variant,
-}: IHomeSummaryCardProps) => {
+}: IDashboardSummaryCardProps) => {
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between gap-x-4">
@@ -97,4 +97,4 @@ const HomeSummaryCard = ({
   );
 };
 
-export default HomeSummaryCard;
+export default DashboardSummaryCard;

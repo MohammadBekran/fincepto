@@ -31,8 +31,6 @@ const SpendingPie = ({
     setChartType(type);
   };
 
-  console.log({ data });
-
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader className="flex justify-between space-y-2 lg:flex-row lg:items-center lg:space-y-0">

@@ -30,8 +30,6 @@ const SettingsCard = () => {
     );
   }
 
-  console.log({ connectedBank });
-
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader>

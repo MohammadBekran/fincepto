@@ -1,13 +1,13 @@
 "use client";
 
-import Chart from "@/components/chart";
-import ChartLoading from "@/features/home/components/chart-loading";
 import { useGetSummary } from "@/features/summary/core/services/api/queries.api";
 
-import SpendingPieLoading from "@/components/spending-pie-loading";
+import Chart from "@/components/chart";
+import ChartLoading from "@/components/chart-loading";
 import SpendingPie from "@/components/spending-pie";
+import SpendingPieLoading from "@/components/spending-pie-loading";
 
-const HomeCharts = () => {
+const DashboardCharts = () => {
   const { data: summary, isLoading } = useGetSummary();
 
   if (isLoading)
@@ -34,4 +34,4 @@ const HomeCharts = () => {
   );
 };
 
-export default HomeCharts;
+export default DashboardCharts;

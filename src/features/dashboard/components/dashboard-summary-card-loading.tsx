@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-const HomeSummaryCardLoading = () => {
+const DashboardSummaryCardLoading = () => {
   return (
     <Card className="flex flex-col justify-between border-none drop-shadow-sm h-[192px]">
       <CardHeader className="flex flex-row items-center justify-between gap-x-4">
@@ -20,4 +20,4 @@ const HomeSummaryCardLoading = () => {
   );
 };
 
-export default HomeSummaryCardLoading;
+export default DashboardSummaryCardLoading;

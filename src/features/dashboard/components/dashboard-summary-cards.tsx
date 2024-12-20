@@ -4,13 +4,13 @@ import { FaPiggyBank, FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 import { useGetSummary } from "@/features/summary/core/services/api/queries.api";
 
-import HomeSummaryCard from "@/features/home/components/home-summary-card";
-import HomeSummaryCardLoading from "@/features/home/components/home-summary-card-loading";
+import DashboardSummaryCard from "@/features/dashboard/components/dashboard-summary-card";
+import DashboardSummaryCardLoading from "@/features/dashboard/components/dashboard-summary-card-loading";
 
 import { useFilters } from "@/core/hooks";
 import { formatDateRange } from "@/lib/utils";
 
-const HomeSummaryCards = () => {
+const DashboardSummaryCards = () => {
   const [filters] = useFilters();
   const { data: summary, isLoading: isLoading } = useGetSummary();
 
@@ -24,21 +24,21 @@ const HomeSummaryCards = () => {
   if (isLoading)
     return (
       <div className={wrapperClassName}>
-        <HomeSummaryCardLoading />
-        <HomeSummaryCardLoading />
-        <HomeSummaryCardLoading />
+        <DashboardSummaryCardLoading />
+        <DashboardSummaryCardLoading />
+        <DashboardSummaryCardLoading />
       </div>
     );
 
   return (
     <div className={wrapperClassName}>
-      <HomeSummaryCard
+      <DashboardSummaryCard
         title="Remaining"
         value={summary?.remainingChange}
         icon={FaPiggyBank}
         dateRange={dateRangeLabel}
       />
-      <HomeSummaryCard
+      <DashboardSummaryCard
         title="Income"
         value={summary?.incomeAmount}
         percentageChange={summary?.incomeChange}
@@ -46,7 +46,7 @@ const HomeSummaryCards = () => {
         variant="success"
         dateRange={dateRangeLabel}
       />
-      <HomeSummaryCard
+      <DashboardSummaryCard
         title="Expenses"
         value={summary?.expensesAmount}
         percentageChange={summary?.expensesChange}
@@ -58,4 +58,4 @@ const HomeSummaryCards = () => {
   );
 };
 
-export default HomeSummaryCards;
+export default DashboardSummaryCards;

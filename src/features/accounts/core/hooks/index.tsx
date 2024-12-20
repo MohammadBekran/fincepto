@@ -1,8 +1,8 @@
 import { useState, useRef, JSX } from "react";
 import { useQueryState, parseAsBoolean, parseAsString } from "nuqs";
 
-import { useGetAccounts } from "../services/api/queries.api";
-import { useCreateAccount } from "../services/api/mutations.api";
+import { useGetAccounts } from "@/features/accounts/core/services/api/queries.api";
+import { useCreateAccount } from "@/features/accounts/core/services/api/mutations.api";
 
 import Select from "@/components/select";
 import { Button } from "@/components/ui/button";

@@ -56,8 +56,6 @@ const TransactionForm = ({
 
   useEffect(() => {
     if (initialValues) {
-      console.info({ initialValues });
-
       form.setValue("date", initialValues.date);
       form.setValue("amount", initialValues.amount);
       form.setValue("payee", initialValues.payee);
@@ -157,20 +155,24 @@ const TransactionForm = ({
         <FormField
           control={form.control}
           name="amount"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Amount</FormLabel>
-              <FormControl>
-                <AmountInput
-                  value={String(field.value)}
-                  onChange={(value) => field.onChange(Number(value))}
-                  disabled={disabled}
-                  placeholder="0.00"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          render={({ field }) => {
+            const renderAmount = field.value ? String(field.value) : "";
+
+            return (
+              <FormItem>
+                <FormLabel>Amount</FormLabel>
+                <FormControl>
+                  <AmountInput
+                    value={renderAmount}
+                    onChange={(value) => field.onChange(Number(value))}
+                    disabled={disabled}
+                    placeholder="0.00"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
         />
         <FormField
           control={form.control}
