@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import Categories from "@/features/categories/components";
 
+export const dynamic = "force-dynamic";
+
 const CategoriesPage = () => {
   return <Categories />;
 };
