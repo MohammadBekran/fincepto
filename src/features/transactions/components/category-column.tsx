@@ -28,9 +28,12 @@ const CategoryColumn = ({ id, category, categoryId }: ICategoryColumnProps) => {
 
   return (
     <div
-      className={cn("flex items-center cursor-pointer hover:underline", {
-        "text-rose-500": !category,
-      })}
+      className={cn(
+        "flex items-center gap-x-2 cursor-pointer hover:underline",
+        {
+          "text-rose-500": !category,
+        }
+      )}
       onClick={handleClick}
     >
       {!category && <TriangleAlert className="size-4 shrink-0" />}

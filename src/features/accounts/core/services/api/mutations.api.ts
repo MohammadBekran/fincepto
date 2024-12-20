@@ -53,6 +53,9 @@ export const useCreateAccount = () => {
       queryClient.invalidateQueries({
         queryKey: ["accounts"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
+      });
 
       toast.success("Account created");
     },
@@ -90,6 +93,9 @@ export const useBulkDeleteAccount = () => {
       });
       queryClient.invalidateQueries({
         queryKey: ["transactions"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
       });
 
       toast.success("Accounts deleted");
@@ -133,6 +139,9 @@ export const useEditAccount = () => {
       queryClient.invalidateQueries({
         queryKey: ["transactions"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
+      });
 
       toast.success("Account edited");
     },
@@ -170,6 +179,9 @@ export const useDeleteAccount = () => {
       });
       queryClient.invalidateQueries({
         queryKey: ["transactions"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
       });
 
       toast.success("Account deleted");

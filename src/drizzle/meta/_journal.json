@@ -15,6 +15,13 @@
       "when": 1734370691666,
       "tag": "0001_spotty_boomerang",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1734698900071,
+      "tag": "0002_broad_northstar",
+      "breakpoints": true
     }
   ]
 }

@@ -55,6 +55,9 @@ export const useCreateCategory = () => {
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
+      });
 
       toast.success("Category created");
     },
@@ -89,6 +92,9 @@ export const useBulkDeleteCategory = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["categories"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
       });
 
       toast.success("Categories deleted");
@@ -132,6 +138,9 @@ export const useEditCategory = () => {
       queryClient.invalidateQueries({
         queryKey: ["transactions"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
+      });
 
       toast.success("Category edited");
     },
@@ -166,6 +175,9 @@ export const useDeleteCategory = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["categories"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["summary"],
       });
 
       toast.success("Category deleted");
