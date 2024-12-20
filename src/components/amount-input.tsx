@@ -34,6 +34,7 @@ const AmountInput = ({
   return (
     <div className="relative">
       <Tooltip
+        asChild
         triggerContent={
           <button
             type="button"

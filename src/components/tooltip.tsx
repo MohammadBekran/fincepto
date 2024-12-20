@@ -6,15 +6,20 @@ import {
 } from "@/components/ui/tooltip";
 
 interface ITooltipProps {
+  asChild?: boolean;
   triggerContent: React.ReactNode;
   children: React.ReactNode;
 }
 
-const Tooltip = ({ triggerContent, children }: ITooltipProps) => {
+const Tooltip = ({
+  asChild = false,
+  triggerContent,
+  children,
+}: ITooltipProps) => {
   return (
     <TooltipProvider>
       <UITooltip>
-        <TooltipTrigger>{triggerContent}</TooltipTrigger>
+        <TooltipTrigger asChild={asChild}>{triggerContent}</TooltipTrigger>
         <TooltipContent>{children}</TooltipContent>
       </UITooltip>
     </TooltipProvider>
