@@ -1,3 +1,4 @@
+import Tooltip from "@/components/tooltip";
 import { useEditAccountModal } from "@/features/accounts/core/hooks";
 import { useEditCategoryModal } from "@/features/categories/core/hooks";
 import { useEditTransactionModal } from "@/features/transactions/core/hooks";
@@ -20,12 +21,18 @@ const AccountColumn = ({ account, accountId }: IAccountColumnProps) => {
   };
 
   return (
-    <div
-      className="flex items-center cursor-pointer hover:underline"
-      onClick={handleClick}
+    <Tooltip
+      triggerContent={
+        <span
+          className="max-w-[200px] flex items-center cursor-pointer truncate hover:underline"
+          onClick={handleClick}
+        >
+          {account}
+        </span>
+      }
     >
-      {account}
-    </div>
+      <span className="flex items-center">{account}</span>
+    </Tooltip>
   );
 };
 

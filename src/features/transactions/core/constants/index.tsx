@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { formatCurrency } from "@/lib/utils";
+import Tooltip from "@/components/tooltip";
 
 export const TRANSACTION_COLUMNS: ColumnDef<TTransactionResponse>[] = [
   {
@@ -64,6 +65,11 @@ export const TRANSACTION_COLUMNS: ColumnDef<TTransactionResponse>[] = [
         Payee
         <ArrowUpDown className="size-4" />
       </Button>
+    ),
+    cell: ({ row }) => (
+      <Tooltip triggerContent={<span>{row.original.payee}</span>}>
+        <span className="truncate">{row.original.payee}</span>
+      </Tooltip>
     ),
   },
   {

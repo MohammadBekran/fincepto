@@ -180,7 +180,7 @@ export const useEditTransaction = () => {
         queryKey: ["transactions"],
       });
       queryClient.invalidateQueries({
-        queryKey: ["transactions", data.id],
+        queryKey: ["transaction", data.id],
       });
       queryClient.invalidateQueries({
         queryKey: ["summary"],

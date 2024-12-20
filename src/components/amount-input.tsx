@@ -1,12 +1,7 @@
 import CurrencyInput from "react-currency-input-field";
 import { Info, MinusIcon, PlusIcon } from "lucide-react";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
+import Tooltip from "@/components/tooltip";
 import { cn } from "@/lib/utils";
 
 interface IAmountInputProps {
@@ -38,30 +33,27 @@ const AmountInput = ({
 
   return (
     <div className="relative">
-      <TooltipProvider>
-        <Tooltip delayDuration={100}>
-          <TooltipTrigger asChild>
-            <button
-              type="button"
-              className={cn(
-                "absolute top-1.5 left-1.5 flex justify-center items-center rounded-md transition p-2 bg-slate-400 hover:bg-slate-500",
-                {
-                  "bg-emerald-500 hover:bg-emerald-500": isIncome,
-                  "bg-rose-500 hover:bg-rose-500": isExpense,
-                }
-              )}
-              onClick={onReverseValue}
-            >
-              {!floatValue && <Info className={iconClassName} />}
-              {isIncome && <PlusIcon className={iconClassName} />}
-              {isExpense && <MinusIcon className={iconClassName} />}
-            </button>
-          </TooltipTrigger>
-          <TooltipContent>
-            Use [+] for income and use [-] for expenses
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Tooltip
+        triggerContent={
+          <button
+            type="button"
+            className={cn(
+              "absolute top-1.5 left-1.5 flex justify-center items-center rounded-md transition p-2 bg-slate-400 hover:bg-slate-500",
+              {
+                "bg-emerald-500 hover:bg-emerald-500": isIncome,
+                "bg-rose-500 hover:bg-rose-500": isExpense,
+              }
+            )}
+            onClick={onReverseValue}
+          >
+            {!floatValue && <Info className={iconClassName} />}
+            {isIncome && <PlusIcon className={iconClassName} />}
+            {isExpense && <MinusIcon className={iconClassName} />}
+          </button>
+        }
+      >
+        Use [+] for income and use [-] for expenses
+      </Tooltip>
       <CurrencyInput
         prefix="$"
         value={value}
