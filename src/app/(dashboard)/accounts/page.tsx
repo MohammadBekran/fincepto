@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import Accounts from "@/features/accounts/components";
 
+export const dynamic = "force-dynamic";
+
 const AccountsPage = () => {
-  return (
-    <Suspense>
-      <Accounts />;
-    </Suspense>
-  );
+  return <Accounts />;
 };
 
 export const metadata: Metadata = {
