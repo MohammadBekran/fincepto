@@ -1,7 +1,7 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import ClerkProvider from "@/components/partials/providers/clerk-provider";
 import NuqsProvider from "@/components/partials/providers/nuqs-provider";
 import QueryClientProvider from "@/components/partials/providers/query-client-provider";
 import ToastProvider from "@/components/partials/providers/toast-provider";
