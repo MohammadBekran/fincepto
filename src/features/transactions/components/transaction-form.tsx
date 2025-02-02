@@ -87,7 +87,7 @@ const TransactionForm = ({
               <FormControl>
                 <DatePicker
                   disabled={disabled}
-                  placeholder="There we go"
+                  placeholder="Select a date"
                   {...field}
                 />
               </FormControl>
